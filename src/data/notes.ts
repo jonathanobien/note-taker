@@ -2,6 +2,8 @@ export interface Note {
   id: string;
   title: string;
   body: string;
+  /** Optional captured photo, stored as a data URL. */
+  image?: string;
   updatedAt: number;
 }
 
