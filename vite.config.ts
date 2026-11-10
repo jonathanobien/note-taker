@@ -5,6 +5,7 @@ import { defineConfig } from 'vitest/config';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/note-taker/',
   plugins: [
     react(),
     legacy(),
@@ -18,8 +19,8 @@ export default defineConfig({
         theme_color: '#3880ff',
         background_color: '#ffffff',
         display: 'standalone',
-        start_url: '/',
-        scope: '/',
+        start_url: '/note-taker/',
+        scope: '/note-taker/',
         icons: [
           {
             src: 'favicon.png',
