@@ -13,6 +13,7 @@
     <a class="brand" href="../">SAP B1 Study Guide</a>
     <a class="navlink" href="../ch1/">Chapter 1</a>
     <a class="navlink current" href="./">Chapter 2</a>
+    <a class="navlink" href="quiz/">Quiz 2</a>
   </div>
 </nav>
 
@@ -20,7 +21,7 @@
   <div class="hero">
     <p class="kicker">SAP Business One on Cloud · Operations Management</p>
     <h1>Chapter 2 — Getting Started</h1>
-    <p>Logging in, the parts of the screen, and basic settings — with a memory of what each step is for, plus an interactive quiz.</p>
+    <p>Logging in, the parts of the screen, and basic settings — with the reason behind each step. The quiz is on its own page.</p>
   </div>
 
   <section class="chapter">
@@ -106,60 +107,9 @@
       <div><dt>Modules Menu</dt><dd>Tree-structure navigation of all modules.</dd></div>
     </dl>
 
-    <div class="reveal-banner" id="revealBanner" hidden>✓ Your teacher has released the answers — the correct choice is highlighted below.</div>
-
-    <div class="selfcheck">
-      <h3>✓ Chapter 2 Quiz</h3>
-      <p style="margin:0 0 14px;color:var(--muted);font-size:.92rem">Pick the best answer, then click <strong>Submit</strong> for your score. Correct answers stay hidden until your teacher releases them.</p>
-      <form class="quiz" data-set="c2">
-        <ol class="q-list">
-          <li class="q" data-q="q1">
-            <p class="q-text">To view SAP properly on a phone, which option must you enable?</p>
-            <label><input type="radio" name="c2q1" value="a"> Mobile Mode</label>
-            <label><input type="radio" name="c2q1" value="b"> Desktop Site</label>
-            <label><input type="radio" name="c2q1" value="c"> Incognito Mode</label>
-            <label><input type="radio" name="c2q1" value="d"> Reader View</label>
-            <div class="q-flag ok">✓ Correct</div><div class="q-flag no">✗ Not quite — review and try again</div>
-          </li>
-          <li class="q" data-q="q2">
-            <p class="q-text">What are the two bars at the top of the screen?</p>
-            <label><input type="radio" name="c2q2" value="a"> Status Bar and Task Bar</label>
-            <label><input type="radio" name="c2q2" value="b"> Menu Bar and Tool Bar</label>
-            <label><input type="radio" name="c2q2" value="c"> Title Bar and Scroll Bar</label>
-            <label><input type="radio" name="c2q2" value="d"> Side Bar and Address Bar</label>
-            <div class="q-flag ok">✓ Correct</div><div class="q-flag no">✗ Not quite — review and try again</div>
-          </li>
-          <li class="q" data-q="q3">
-            <p class="q-text">Which statement about the Modules Menu is true?</p>
-            <label><input type="radio" name="c2q3" value="a"> It can be freely modified</label>
-            <label><input type="radio" name="c2q3" value="b"> It cannot be modified</label>
-            <label><input type="radio" name="c2q3" value="c"> It is edited by every user</label>
-            <label><input type="radio" name="c2q3" value="d"> It replaces the Main Menu</label>
-            <div class="q-flag ok">✓ Correct</div><div class="q-flag no">✗ Not quite — review and try again</div>
-          </li>
-          <li class="q" data-q="q4">
-            <p class="q-text">What is the menu path to change your branch name?</p>
-            <label><input type="radio" name="c2q4" value="a"> Administration ▸ Setup ▸ Financials ▸ Branches</label>
-            <label><input type="radio" name="c2q4" value="b"> Administration ▸ System Initialization ▸ Branches</label>
-            <label><input type="radio" name="c2q4" value="c"> Sales ▸ Setup ▸ Financials ▸ Branches</label>
-            <label><input type="radio" name="c2q4" value="d"> Administration ▸ Setup ▸ Branches ▸ Financials</label>
-            <div class="q-flag ok">✓ Correct</div><div class="q-flag no">✗ Not quite — review and try again</div>
-          </li>
-          <li class="q" data-q="q5">
-            <p class="q-text">If SAP won't let you change the font size, what should you do?</p>
-            <label><input type="radio" name="c2q5" value="a"> Reinstall SAP</label>
-            <label><input type="radio" name="c2q5" value="b"> Change Windows display settings</label>
-            <label><input type="radio" name="c2q5" value="c"> Increase the browser's zoom %</label>
-            <label><input type="radio" name="c2q5" value="d"> Edit the font in General Settings</label>
-            <div class="q-flag ok">✓ Correct</div><div class="q-flag no">✗ Not quite — review and try again</div>
-          </li>
-        </ol>
-        <div class="quiz-actions">
-          <button type="submit" class="btn">Submit</button>
-          <button type="reset" class="btn secondary">Reset</button>
-          <span class="quiz-result" hidden></span>
-        </div>
-      </form>
+    <div style="margin-top:34px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+      <a class="btn" href="quiz/">Take the Chapter 2 quiz →</a>
+      <a class="btn secondary" href="../ch1/">← Back to Chapter 1</a>
     </div>
   </section>
 
@@ -167,57 +117,5 @@
     <p>Reviewer based on <em>SAP B1 on Cloud — Operations Management</em> (FIT Academy), Chapter 2. “Beyond the manual” notes are added context, not official manual text.</p>
   </footer>
 </div>
-
-<script>
-  (function () {
-    var CHAPTER = 'ch2';
-    var KEY = { q1: 'b', q2: 'b', q3: 'b', q4: 'a', q5: 'c' };
-    var form = document.querySelector('form.quiz');
-    var result = form.querySelector('.quiz-result');
-    var total = Object.keys(KEY).length;
-    var revealed = false;
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var score = 0, answered = 0;
-      Object.keys(KEY).forEach(function (q) {
-        var li = form.querySelector('li.q[data-q="' + q + '"]');
-        li.classList.remove('correct', 'incorrect');
-        var sel = form.querySelector('input[name="c2' + q + '"]:checked');
-        if (sel) { answered++; var ok = sel.value === KEY[q]; li.classList.add(ok ? 'correct' : 'incorrect'); if (ok) score++; }
-        else { li.classList.add('incorrect'); }
-      });
-      var msg = '<span class="big">' + score + ' / ' + total + '</span> correct';
-      if (answered < total) msg += ' · ' + (total - answered) + ' unanswered';
-      else if (score === total) msg += ' · perfect!';
-      result.innerHTML = msg; result.hidden = false;
-    });
-    form.addEventListener('reset', function () {
-      form.querySelectorAll('li.q').forEach(function (li) { li.classList.remove('correct', 'incorrect'); });
-      result.hidden = true; result.innerHTML = '';
-    });
-
-    function applyReveal() {
-      if (revealed) return; revealed = true;
-      document.getElementById('revealBanner').hidden = false;
-      Object.keys(KEY).forEach(function (q) {
-        var input = form.querySelector('input[name="c2' + q + '"][value="' + KEY[q] + '"]');
-        if (!input) return;
-        var label = input.closest('label');
-        label.classList.add('answer');
-        var b = document.createElement('span'); b.className = 'ans-badge'; b.textContent = '✓ correct answer';
-        label.appendChild(b);
-      });
-    }
-    function check() {
-      fetch('../reveal.json?t=' + Date.now(), { cache: 'no-store' })
-        .then(function (r) { return r.json(); })
-        .then(function (d) { if (d && d[CHAPTER] === true) applyReveal(); })
-        .catch(function () {});
-    }
-    check();
-    var poll = setInterval(function () { if (revealed) { clearInterval(poll); return; } check(); }, 15000);
-  })();
-</script>
 </body>
 </html>
