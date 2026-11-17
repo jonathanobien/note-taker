@@ -19,7 +19,7 @@
   <div class="hero">
     <p class="kicker">Chapter 1 · SAP on Cloud Platform</p>
     <h1>Quiz 1</h1>
-    <p>Ten questions. Pick the best answer, then click <strong>Submit</strong> for your score. Correct answers appear only when your teacher releases them.</p>
+    <p>Ten questions. Answer all of them, then click <strong>Submit</strong> — you get <strong>one attempt</strong>, so review before you submit. Correct answers appear only when your teacher releases them.</p>
   </div>
 
   <div class="reveal-banner" id="revealBanner" hidden>✓ Your teacher has released the answers — the correct choice is highlighted below.</div>
@@ -110,10 +110,10 @@
         </li>
       </ol>
       <div class="quiz-actions">
-        <button type="submit" class="btn">Submit</button>
-        <button type="reset" class="btn secondary">Reset</button>
+        <button type="submit" class="btn" id="submitBtn">Submit</button>
         <span class="quiz-result" hidden></span>
       </div>
+      <p id="lockNote" hidden style="color:var(--muted);font-size:.9rem;font-weight:600;margin-top:10px">You've already submitted this quiz — only one attempt is allowed on this device.</p>
     </form>
   </div>
 
@@ -128,29 +128,70 @@
   (function () {
     var CHAPTER = 'ch1';
     var KEY = { q1: 'b', q2: 'c', q3: 'a', q4: 'a', q5: 'b', q6: 'b', q7: 'a', q8: 'a', q9: 'c', q10: 'a' };
+    var LS_KEY = 'sap-quiz-ch1-attempt';
     var form = document.querySelector('form.quiz');
     var result = form.querySelector('.quiz-result');
+    var submitBtn = document.getElementById('submitBtn');
+    var lockNote = document.getElementById('lockNote');
     var total = Object.keys(KEY).length;
     var revealed = false;
+    var locked = false;
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var score = 0, answered = 0;
-      Object.keys(KEY).forEach(function (q) {
-        var li = form.querySelector('li.q[data-q="' + q + '"]');
-        li.classList.remove('correct', 'incorrect');
-        var sel = form.querySelector('input[name="c1' + q + '"]:checked');
-        if (sel) { answered++; var ok = sel.value === KEY[q]; li.classList.add(ok ? 'correct' : 'incorrect'); if (ok) score++; }
-        else { li.classList.add('incorrect'); }
-      });
+    function showResult(score, answered) {
       var msg = '<span class="big">' + score + ' / ' + total + '</span> correct';
       if (answered < total) msg += ' · ' + (total - answered) + ' unanswered';
       else if (score === total) msg += ' · perfect!';
       result.innerHTML = msg; result.hidden = false;
-    });
-    form.addEventListener('reset', function () {
-      form.querySelectorAll('li.q').forEach(function (li) { li.classList.remove('correct', 'incorrect'); });
-      result.hidden = true; result.innerHTML = '';
+    }
+    function mark(answers) {
+      var score = 0, answered = 0;
+      Object.keys(KEY).forEach(function (q) {
+        var li = form.querySelector('li.q[data-q="' + q + '"]');
+        li.classList.remove('correct', 'incorrect');
+        var v = answers[q];
+        if (v) { answered++; var ok = v === KEY[q]; li.classList.add(ok ? 'correct' : 'incorrect'); if (ok) score++; }
+        else { li.classList.add('incorrect'); }
+      });
+      return { score: score, answered: answered };
+    }
+    function lock(answers) {
+      locked = true;
+      Object.keys(answers).forEach(function (q) {
+        var inp = form.querySelector('input[name="c1' + q + '"][value="' + answers[q] + '"]');
+        if (inp) inp.checked = true;
+      });
+      form.querySelectorAll('input[type=radio]').forEach(function (i) { i.disabled = true; });
+      submitBtn.disabled = true; submitBtn.hidden = true;
+      lockNote.hidden = false;
+    }
+
+    // Restore a previous attempt (one try only, per device).
+    try {
+      var saved = JSON.parse(localStorage.getItem(LS_KEY) || 'null');
+      if (saved && saved.answers) {
+        var r0 = mark(saved.answers);
+        showResult(r0.score, r0.answered);
+        lock(saved.answers);
+      }
+    } catch (e) {}
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (locked) return;
+      var answers = {}, answered = 0;
+      Object.keys(KEY).forEach(function (q) {
+        var sel = form.querySelector('input[name="c1' + q + '"]:checked');
+        if (sel) { answers[q] = sel.value; answered++; }
+      });
+      if (answered < total) {
+        result.hidden = false;
+        result.innerHTML = 'Please answer all ' + total + ' questions before submitting — ' + (total - answered) + ' left.';
+        return;
+      }
+      var r = mark(answers);
+      showResult(r.score, r.answered);
+      try { localStorage.setItem(LS_KEY, JSON.stringify({ answers: answers, score: r.score, ts: Date.now() })); } catch (e) {}
+      lock(answers);
     });
 
     function applyReveal() {
