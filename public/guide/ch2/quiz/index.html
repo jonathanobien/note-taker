@@ -19,7 +19,7 @@
   <div class="hero">
     <p class="kicker">Chapter 2 · Getting Started</p>
     <h1>Quiz 2</h1>
-    <p>Five questions. Pick the best answer, then click <strong>Submit</strong> for your score. Correct answers appear only when your teacher releases them.</p>
+    <p>Ten questions. Pick the best answer, then click <strong>Submit</strong> for your score. Correct answers appear only when your teacher releases them.</p>
   </div>
 
   <div class="reveal-banner" id="revealBanner" hidden>✓ Your teacher has released the answers — the correct choice is highlighted below.</div>
@@ -68,6 +68,46 @@
           <label><input type="radio" name="c2q5" value="d"> Edit the font in General Settings</label>
           <div class="q-flag ok">✓ Correct</div><div class="q-flag no">✗ Not quite — review and try again</div>
         </li>
+        <li class="q" data-q="q6">
+          <p class="q-text">At login, what do you select that your instructor provides?</p>
+          <label><input type="radio" name="c2q6" value="a"> The branch only</label>
+          <label><input type="radio" name="c2q6" value="b"> The company</label>
+          <label><input type="radio" name="c2q6" value="c"> The module</label>
+          <label><input type="radio" name="c2q6" value="d"> The language</label>
+          <div class="q-flag ok">✓ Correct</div><div class="q-flag no">✗ Not quite — review and try again</div>
+        </li>
+        <li class="q" data-q="q7">
+          <p class="q-text">The Modules Menu arranges functions in what kind of structure?</p>
+          <label><input type="radio" name="c2q7" value="a"> A table</label>
+          <label><input type="radio" name="c2q7" value="b"> A tree structure</label>
+          <label><input type="radio" name="c2q7" value="c"> A grid</label>
+          <label><input type="radio" name="c2q7" value="d"> A single list of icons</label>
+          <div class="q-flag ok">✓ Correct</div><div class="q-flag no">✗ Not quite — review and try again</div>
+        </li>
+        <li class="q" data-q="q8">
+          <p class="q-text">Where do you change your user name and password?</p>
+          <label><input type="radio" name="c2q8" value="a"> Administration ▸ Branches</label>
+          <label><input type="radio" name="c2q8" value="b"> My Personal Settings (User Set-up)</label>
+          <label><input type="radio" name="c2q8" value="c"> General Settings</label>
+          <label><input type="radio" name="c2q8" value="d"> The login page</label>
+          <div class="q-flag ok">✓ Correct</div><div class="q-flag no">✗ Not quite — review and try again</div>
+        </li>
+        <li class="q" data-q="q9">
+          <p class="q-text">On the Display tab, which date format does the lesson set?</p>
+          <label><input type="radio" name="c2q9" value="a"> DD/MM/YYYY</label>
+          <label><input type="radio" name="c2q9" value="b"> YYYY-MM-DD</label>
+          <label><input type="radio" name="c2q9" value="c"> MM/DD/YYYY</label>
+          <label><input type="radio" name="c2q9" value="d"> MM-DD-YY</label>
+          <div class="q-flag ok">✓ Correct</div><div class="q-flag no">✗ Not quite — review and try again</div>
+        </li>
+        <li class="q" data-q="q10">
+          <p class="q-text">What is the menu path for the display settings (General Settings)?</p>
+          <label><input type="radio" name="c2q10" value="a"> Administration ▸ System Initialization ▸ General Settings</label>
+          <label><input type="radio" name="c2q10" value="b"> Administration ▸ Setup ▸ General Settings</label>
+          <label><input type="radio" name="c2q10" value="c"> Tools ▸ General Settings</label>
+          <label><input type="radio" name="c2q10" value="d"> Administration ▸ Financials ▸ General Settings</label>
+          <div class="q-flag ok">✓ Correct</div><div class="q-flag no">✗ Not quite — review and try again</div>
+        </li>
       </ol>
       <div class="quiz-actions">
         <button type="submit" class="btn">Submit</button>
@@ -87,7 +127,7 @@
 <script>
   (function () {
     var CHAPTER = 'ch2';
-    var KEY = { q1: 'b', q2: 'b', q3: 'b', q4: 'a', q5: 'c' };
+    var KEY = { q1: 'b', q2: 'b', q3: 'b', q4: 'a', q5: 'c', q6: 'b', q7: 'b', q8: 'b', q9: 'c', q10: 'a' };
     var form = document.querySelector('form.quiz');
     var result = form.querySelector('.quiz-result');
     var total = Object.keys(KEY).length;

@@ -19,7 +19,7 @@
   <div class="hero">
     <p class="kicker">Chapter 1 · SAP on Cloud Platform</p>
     <h1>Quiz 1</h1>
-    <p>Five questions. Pick the best answer, then click <strong>Submit</strong> for your score. Correct answers appear only when your teacher releases them.</p>
+    <p>Ten questions. Pick the best answer, then click <strong>Submit</strong> for your score. Correct answers appear only when your teacher releases them.</p>
   </div>
 
   <div class="reveal-banner" id="revealBanner" hidden>✓ Your teacher has released the answers — the correct choice is highlighted below.</div>
@@ -68,6 +68,46 @@
           <label><input type="radio" name="c1q5" value="d"> Works without any internet</label>
           <div class="q-flag ok">✓ Correct</div><div class="q-flag no">✗ Not quite — review and try again</div>
         </li>
+        <li class="q" data-q="q6">
+          <p class="q-text">Which cloud deployment is used by one organization only, behind its own firewall?</p>
+          <label><input type="radio" name="c1q6" value="a"> Public cloud</label>
+          <label><input type="radio" name="c1q6" value="b"> Private cloud</label>
+          <label><input type="radio" name="c1q6" value="c"> Hybrid cloud</label>
+          <label><input type="radio" name="c1q6" value="d"> Shared cloud</label>
+          <div class="q-flag ok">✓ Correct</div><div class="q-flag no">✗ Not quite — review and try again</div>
+        </li>
+        <li class="q" data-q="q7">
+          <p class="q-text">Which cloud type combines the features of private and public cloud?</p>
+          <label><input type="radio" name="c1q7" value="a"> Hybrid cloud</label>
+          <label><input type="radio" name="c1q7" value="b"> Internal cloud</label>
+          <label><input type="radio" name="c1q7" value="c"> External cloud</label>
+          <label><input type="radio" name="c1q7" value="d"> Multi cloud</label>
+          <div class="q-flag ok">✓ Correct</div><div class="q-flag no">✗ Not quite — review and try again</div>
+        </li>
+        <li class="q" data-q="q8">
+          <p class="q-text">In what year was SAP founded?</p>
+          <label><input type="radio" name="c1q8" value="a"> 1972</label>
+          <label><input type="radio" name="c1q8" value="b"> 1992</label>
+          <label><input type="radio" name="c1q8" value="c"> 1980</label>
+          <label><input type="radio" name="c1q8" value="d"> 2000</label>
+          <div class="q-flag ok">✓ Correct</div><div class="q-flag no">✗ Not quite — review and try again</div>
+        </li>
+        <li class="q" data-q="q9">
+          <p class="q-text">How many functional modules does SAP Business One have?</p>
+          <label><input type="radio" name="c1q9" value="a"> 5</label>
+          <label><input type="radio" name="c1q9" value="b"> 10</label>
+          <label><input type="radio" name="c1q9" value="c"> 15</label>
+          <label><input type="radio" name="c1q9" value="d"> 20</label>
+          <div class="q-flag ok">✓ Correct</div><div class="q-flag no">✗ Not quite — review and try again</div>
+        </li>
+        <li class="q" data-q="q10">
+          <p class="q-text">Which of these is one of SAP Business One's four selling points?</p>
+          <label><input type="radio" name="c1q10" value="a"> Integrated</label>
+          <label><input type="radio" name="c1q10" value="b"> Complicated</label>
+          <label><input type="radio" name="c1q10" value="c"> Offline-only</label>
+          <label><input type="radio" name="c1q10" value="d"> Expensive</label>
+          <div class="q-flag ok">✓ Correct</div><div class="q-flag no">✗ Not quite — review and try again</div>
+        </li>
       </ol>
       <div class="quiz-actions">
         <button type="submit" class="btn">Submit</button>
@@ -87,7 +127,7 @@
 <script>
   (function () {
     var CHAPTER = 'ch1';
-    var KEY = { q1: 'b', q2: 'c', q3: 'a', q4: 'a', q5: 'b' };
+    var KEY = { q1: 'b', q2: 'c', q3: 'a', q4: 'a', q5: 'b', q6: 'b', q7: 'a', q8: 'a', q9: 'c', q10: 'a' };
     var form = document.querySelector('form.quiz');
     var result = form.querySelector('.quiz-result');
     var total = Object.keys(KEY).length;
