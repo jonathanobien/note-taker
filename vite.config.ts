@@ -44,6 +44,8 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+        // Don't let the app's service worker hijack the standalone /guide/ page.
+        navigateFallbackDenylist: [/^\/note-taker\/guide\//],
       },
     }),
   ],
